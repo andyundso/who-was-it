@@ -12,3 +12,7 @@
     transform: skew(-5deg);
     color: #343F65;
 }
+
+.lucky-font {
+    font-family: 'Luckiest Guy';
+}
