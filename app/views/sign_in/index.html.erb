@@ -1,0 +1,13 @@
+<div class="flex min-h-screen items-center p-4">
+  <div class="flex-col ">
+    <%= image_tag "7b8fef48474f0a5e-600x338.jpeg", class: "mb-4 rounded-lg" %>
+
+    <p class="text-center">Guess who of your friends has awful taste in music and climb the ladder!</p>
+
+    <div class="flex w-full justify-center">
+      <%= link_to '/auth/spotify', method: :post, class: "fortnite-btn flex items-center justify-center h-32 w-64 mt-8" do %>
+        <span class="fortnite-btn-inner p-3 pt-5 w-11/12 text-5xl truncate text-center">Sign in</span>
+      <% end %>
+    </div>
+  </div>
+</div>

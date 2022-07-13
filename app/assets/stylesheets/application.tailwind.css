@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fortnite-btn {
+    background: linear-gradient(#fefb72, #fefca3);
+    font-family: 'Luckiest Guy';
+}
+
+.fortnite-btn-inner {
+    background: linear-gradient(#ede801, #fefb72);
+    transform: skew(-5deg);
+    color: #343F65;
+}
