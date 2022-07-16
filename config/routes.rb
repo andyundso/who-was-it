@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "sign_in", to: "sign_in#index"
   get '/auth/spotify/callback', to: 'callbacks#spotify'
 
-  resources :playlists, only: %i[index]
+  resources :playlists, only: %i[index show]
 
   # Defines the root path route ("/")
   root "sign_in#index"

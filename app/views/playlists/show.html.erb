@@ -1,0 +1,11 @@
+<div class="flex flex-col h-screen justify-between">
+  <%= turbo_frame_tag "playlist_interface" do %>
+    <% if @votes.any? %>
+      Current standings ..
+    <% else %>
+      No votes recorded yet ..
+    <% end %>
+
+    <%= render 'navigation' %>
+  <% end %>
+</div>
