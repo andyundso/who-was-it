@@ -16,7 +16,7 @@
         <tbody>
         <% @votes.each do |vote| %>
           <tr class="border-b hover:bg-gray-50">
-            <td class="p-4"><%= @playlist_users[vote.first] %></td>
+            <td class="p-4"><%= RSpotify::User.find(vote.first)&.display_name %></td>
             <td class="p-4"><%= vote.second %> / <%= vote.third %></td>
           </tr>
         <% end %>
