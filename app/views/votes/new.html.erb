@@ -12,7 +12,9 @@
 
     <%= form.hidden_field :spotify_track_id %>
 
-    <%= form.select :guess, options_for_select(@playlist_users.map { |id, display_name| [display_name, id] }), {}, { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+    <div data-controller="tom-select">
+      <%= form.select :guess, options_for_select(@playlist_users.map { |id, display_name| [display_name, id] }), {}, { required: true, value: nil } %>
+    </div>
 
     <div class="flex w-full justify-center">
       <%= button_tag(type: 'submit') do %>
