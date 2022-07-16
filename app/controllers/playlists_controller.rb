@@ -48,6 +48,8 @@ class PlaylistsController < ApplicationController
 
   def set_playlist_tracks
     @tracks, @tracks_added_by, @playlist_users = Rails.cache.fetch("playlist/#{params[:id]}/tracks", expires_in: 1.hour) do
+      Rails.logger.info "fetching data from Spotify API ..."
+
       tracks = []
       tracks_added_by = {}
       playlist_users = {}

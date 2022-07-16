@@ -30,5 +30,8 @@ module WhoWasIt
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configure Rails caching
+    config.cache_store = :memory_store, { size: 64.megabytes }
   end
 end
