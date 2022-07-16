@@ -14,7 +14,7 @@ class VotesController < ApplicationController
       if result
         flash.notice = "Correct! The track was indeed added by #{@playlist_users[vote.guess]}."
       else
-        flash.alert = "Sorry, this track was actually added by #{@playlist_users[vote.guess]}."
+        flash.alert = "Sorry, this track was actually added by #{@tracks_added_by[vote.spotify_track_id].display_name} and not by #{@playlist_users[vote.guess]}."
       end
     else
       flash.alert = "Sorry, there was an issue on our side. Try again."
