@@ -47,6 +47,11 @@ class VotesController < ApplicationController
     render :new
   end
 
+  def search
+    voted_tracks = Vote.where(spotify_user_id: spotify_user.id, spotify_playlist_id: params[:playlist_id]).pluck(:spotify_track_id)
+    @open_tracks = @tracks.select { |spotify_track| voted_tracks.exclude? spotify_track.id }
+  end
+
   private
 
   def vote_params

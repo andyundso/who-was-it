@@ -7,7 +7,7 @@
     <%= form_with url: new_playlist_vote_path(params[:playlist_id]), method: :get do |form| %>
 
       <div data-controller="tom-select" class="py-4">
-        <%= form.select :spotify_track_id, options_for_select(@tracks.map { |track| ["#{track.name} (#{track.artists.map(&:name).join(", ")})", track.id] }), {}, { required: true, value: nil } %>
+        <%= form.select :spotify_track_id, options_for_select(@open_tracks.map { |track| ["#{track.name} (#{track.artists.map(&:name).join(", ")})", track.id] }), {}, { required: true, value: nil } %>
       </div>
 
       <div class="flex w-full justify-center">
