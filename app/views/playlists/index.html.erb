@@ -11,7 +11,7 @@
         <img src="<%= playlist.images.first.dig("url") %>" alt="<%= playlist.name %>" class="h-auto w-full" />
         <div class="p-5">
           <p class="text-medium mb-5 text-gray-700"><%= playlist.name %></p>
-          <%= link_to "Play", playlist_path(playlist.id), class: "w-full rounded-md bg-indigo-600 py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75" %>
+          <%= link_to "Play", playlist_path(playlist.id), class: "block w-full rounded-md bg-indigo-600 p-2 text-indigo-100" %>
         </div>
       </div>
     </div>
