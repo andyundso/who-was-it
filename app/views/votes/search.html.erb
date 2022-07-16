@@ -1,23 +1,25 @@
 <%= turbo_frame_tag "playlist_interface", class: "flex flex-col h-screen justify-between p-4" do %>
-  <p class="lucky-font text-4xl">Search for a song</p>
+  <div class="mb-auto">
+    <p class="lucky-font text-4xl">Search for a song</p>
 
-  <%= render FlashComponent.new(flash: flash) %>
+    <%= render FlashComponent.new(flash: flash) %>
 
-  <%= form_with url: new_playlist_vote_path(params[:playlist_id]), method: :get do |form| %>
+    <%= form_with url: new_playlist_vote_path(params[:playlist_id]), method: :get do |form| %>
 
-    <div data-controller="tom-select" class="py-4">
-      <%= form.select :spotify_track_id, options_for_select(@tracks.map { |track| ["#{track.name} (#{track.artists.map(&:name).join(", ")})", track.id] }), {}, { required: true, value: nil } %>
-    </div>
+      <div data-controller="tom-select" class="py-4">
+        <%= form.select :spotify_track_id, options_for_select(@tracks.map { |track| ["#{track.name} (#{track.artists.map(&:name).join(", ")})", track.id] }), {}, { required: true, value: nil } %>
+      </div>
 
-    <div class="flex w-full justify-center">
-      <%= button_tag(type: 'submit') do %>
-        <div class="fortnite-btn flex items-center justify-center h-32 w-64 mt-8">
-          <span class="fortnite-btn-inner p-3 pt-5 w-11/12 text-4xl truncate text-center">Goto Vote</span>
-        </div>
-      <% end %>
-    </div>
+      <div class="flex w-full justify-center">
+        <%= button_tag(type: 'submit') do %>
+          <div class="fortnite-btn flex items-center justify-center h-32 w-64 mt-8">
+            <span class="fortnite-btn-inner p-3 pt-5 w-11/12 text-4xl truncate text-center">Goto Vote</span>
+          </div>
+        <% end %>
+      </div>
 
-  <% end %>
+    <% end %>
+  </div>
 
   <%= render 'navigation' %>
 <% end %>
