@@ -1,6 +1,13 @@
 <div class="relative h-full w-full text-white">
-  <div class="absolute inset-x-0 bottom-0 h-16 text-white mb-2 w-3/5 mx-auto max-w-sm">
+  <div class="absolute inset-x-0 bottom-0 h-16 text-white mb-2 w-4/5 mx-auto max-w-sm">
     <div class="flex flew-row w-full mx-auto h-full bg-gray-700 rounded-full px-3 justify-center">
+      <%= link_to playlists_path, class: "my-auto mx-2 rounded-full w-1/5 p-2", data: { turbo: false } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z"/>
+          <path d="M12 13v7l-8-8 8-8v7h8v2z" fill="rgba(255,255,255,1)"/>
+        </svg>
+      <% end %>
+
       <%= link_to search_playlist_votes_path(params[:playlist_id] || params[:id]), class: "my-auto mx-2 rounded-full w-1/5 p-2" do %>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
           <path fill="none" d="M0 0h24v24H0z"/>
