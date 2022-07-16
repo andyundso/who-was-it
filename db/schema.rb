@@ -15,9 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_075825) do
   enable_extension "plpgsql"
 
   create_table "votes", force: :cascade do |t|
-    t.string "spotify_user_id"
-    t.string "spotify_playlist_id"
-    t.string "spotify_track_id"
+    t.string "spotify_user_id", null: false
+    t.string "spotify_playlist_id", null: false
+    t.string "spotify_track_id", null: false
+    t.string "guess", null: false
     t.integer "value"
   end
 

@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get "sign_in", to: "sign_in#index"
   get '/auth/spotify/callback', to: 'callbacks#spotify'
 
-  resources :playlists, only: %i[index show]
+  resources :playlists, only: %i[index show] do
+    post :create_vote, on: :member
+    get :random, on: :member
+  end
 
   # Defines the root path route ("/")
   root "sign_in#index"
