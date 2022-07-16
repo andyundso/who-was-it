@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
   before_action :set_playlist_tracks, only: %i[show]
 
   def index
-    @playlists = spotify_user.playlists
+    @playlists = spotify_user.playlists(limit: 50)
   end
 
   def show
