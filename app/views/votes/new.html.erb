@@ -17,10 +17,7 @@
 
       <%= form.hidden_field :spotify_track_id %>
       <%= form.hidden_field :mode, value: @mode %>
-
-      <div data-controller="tom-select">
-        <%= form.select :guess, options_for_select(@playlist_users.map { |id, display_name| [display_name, id] }), {}, { required: true, value: nil } %>
-      </div>
+      <%= form.select :guess, options_for_select(@playlist_users.map { |id, display_name| [display_name, id] }), {}, { class: "rounded-md w-full border h-16", required: true, value: nil } %>
 
       <div class="flex w-full justify-center">
         <%= button_tag(type: 'submit') do %>
