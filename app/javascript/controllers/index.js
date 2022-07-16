@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
+
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
