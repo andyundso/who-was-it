@@ -31,7 +31,13 @@ class ApplicationController < ActionController::Base
         tracks = tracks.flatten
 
         tracks_added_by = tracks_added_by.merge(@playlist.tracks_added_by)
-        tracks_added_by.map { |_track, user| playlist_users[user.id] = user.display_name unless playlist_users[user.id] }
+        tracks_added_by.map do |_track, user|
+          begin
+            playlist_users[user.id] = user.display_name unless playlist_users[user.id]
+          rescue
+            playlist_users[user.id] = user.id
+          end
+        end
 
         offset += 1
       end
