@@ -9,6 +9,7 @@ class PlaylistsController < ApplicationController
   def show
     @votes = Vote.where(spotify_playlist_id: params[:id])
                  .group('votes.spotify_user_id')
+                 .order("value_sum desc")
                  .pluck("votes.spotify_user_id, sum(votes.value) as value_sum, count(votes.value) as value_count")
 
     Rails.logger.info @votes.inspect
