@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "playlist_interface", class: "flex flex-col h-screen justify-between p-4" do %>
+  <%= form_with url: new_playlist_vote_path(params[:playlist_id]), method: :get do |form| %>
+
+    <%= form.select :spotify_track_id, options_for_select(@tracks.map { |track| [track.name, track.id] }) %>
+
+    <%= form.submit %>
+
+  <% end %>
+<% end %>

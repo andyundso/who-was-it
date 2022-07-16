@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get '/auth/spotify/callback', to: 'callbacks#spotify'
 
   resources :playlists, only: %i[index show] do
-    post :create_vote, on: :member
-    get :random, on: :member
+    resources :votes, only: %i[create new] do
+      get :random, on: :collection
+      get :search, on: :collection
+    end
   end
 
   # Defines the root path route ("/")

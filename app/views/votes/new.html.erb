@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "playlist_interface", class: "flex flex-col h-screen justify-between p-4" do %>
+  <img src="<%= @track.album.images.second.dig("url") %>" class="rounded-md">
+
+  <div class="p-4 text-center">
+    <p class="text-xl"><%= @track.name %></p>
+    <p><%= @track.artists.map(&:name).join(", ") %></p>
+  </div>
+
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/<%= @track.id %>?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+  <%= form_with model: @vote, url: playlist_votes_path(params[:playlist_id]), class: "mt-4" do |form| %>
+
+    <%= form.hidden_field :spotify_track_id %>
+
+    <%= form.select :guess, options_for_select(@playlist_users.map { |id, display_name| [display_name, id] }), {}, { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+
+    <div class="flex w-full justify-center">
+      <%= button_tag(type: 'submit') do %>
+        <div class="fortnite-btn flex items-center justify-center h-32 w-64 mt-8">
+          <span class="fortnite-btn-inner p-3 pt-5 w-11/12 text-5xl truncate text-center">Vote</span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render 'navigation' %>
+<% end %>
