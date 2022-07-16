@@ -34,11 +34,12 @@ class VotesController < ApplicationController
   end
 
   def random
-    voted_tracks = Vote.where(spotify_user_id: spotify_user.id, spotify_playlist_id: params[:playlist_id]).pluck(:spotify_track_id)
-
-    @track = @tracks
-               .shuffle
-               .first { |spotify_track| voted_tracks.exclude? spotify_track.id }
+    Vote.uncached do
+      voted_tracks = Vote.where(spotify_user_id: spotify_user.id, spotify_playlist_id: params[:playlist_id]).pluck(:spotify_track_id)
+      @track = @tracks
+                 .shuffle
+                 .first { |spotify_track| voted_tracks.exclude? spotify_track.id }
+    end
 
     @vote = Vote.new(spotify_track_id: @track.id, spotify_playlist_id: params[:playlist_id])
 
@@ -48,8 +49,10 @@ class VotesController < ApplicationController
   end
 
   def search
-    voted_tracks = Vote.where(spotify_user_id: spotify_user.id, spotify_playlist_id: params[:playlist_id]).pluck(:spotify_track_id)
-    @open_tracks = @tracks.select { |spotify_track| voted_tracks.exclude? spotify_track.id }
+    Vote.uncached do
+      voted_tracks = Vote.where(spotify_user_id: spotify_user.id, spotify_playlist_id: params[:playlist_id]).pluck(:spotify_track_id)
+      @open_tracks = @tracks.select { |spotify_track| voted_tracks.exclude? spotify_track.id }
+    end
   end
 
   private
