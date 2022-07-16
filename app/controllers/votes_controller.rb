@@ -3,7 +3,7 @@ class VotesController < ApplicationController
   before_action :set_playlist_tracks
 
   def create
-    vote = Vote.new(vote_params)
+    vote = Vote.new(vote_params.except(:mode))
     result = vote.guess == @tracks_added_by[vote.spotify_track_id].id
 
     vote.spotify_playlist_id = params[:playlist_id]
@@ -20,12 +20,17 @@ class VotesController < ApplicationController
       flash.alert = "Sorry, there was an issue on our side. Try again."
     end
 
-    redirect_to random_playlist_votes_path(params[:playlist_id])
+    if vote_params[:mode] == "random"
+      redirect_to random_playlist_votes_path(params[:playlist_id])
+    else
+      redirect_to search_playlist_votes_path(params[:playlist_id])
+    end
   end
 
   def new
     @track = @tracks.find { |spotify_track| spotify_track.id == params[:spotify_track_id] }
     @vote = Vote.new(spotify_track_id: @track.id, spotify_playlist_id: params[:playlist_id])
+    @mode = "selective"
   end
 
   def random
@@ -37,12 +42,14 @@ class VotesController < ApplicationController
 
     @vote = Vote.new(spotify_track_id: @track.id, spotify_playlist_id: params[:playlist_id])
 
+    @mode = "random"
+
     render :new
   end
 
   private
 
   def vote_params
-    params.require(:vote).permit(:guess, :spotify_track_id)
+    params.require(:vote).permit(:guess, :spotify_track_id, :mode)
   end
 end

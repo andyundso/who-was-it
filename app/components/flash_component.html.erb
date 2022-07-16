@@ -1,0 +1,5 @@
+<% @flash.each do |type, value| %>
+  <div data-controller="flash" class="p-2 mb-2 text-white rounded-md <%= type == :alert ? "bg-rose-700" : "bg-lime-700" %>">
+    <%= value %>
+  </div>
+<% end %>
